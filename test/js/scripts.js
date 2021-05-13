@@ -40,3 +40,24 @@
     });
 
 })(jQuery); // End of use strict
+
+function clickEffect(e){
+    var d=document.createElement("div");
+    d.className="clickEffect";
+    d.style.top=e.clientY+"px";d.style.left=e.clientX+"px";
+    document.body.appendChild(d);
+    d.addEventListener('animationend',function(){d.parentElement.removeChild(d);}.bind(this))
+}
+document.addEventListener('click',clickEffect);
+
+window.addEventListener('scroll', function () {
+    var bodyEl = document.querySelector('body');
+    var bodyHeight = bodyEl.offsetHeight;
+    var scrollable = bodyHeight - window.innerHeight;
+    var progressEl = document.querySelector('.progress');
+    var per = Math.floor(window.scrollY / scrollable * 100) + '%';
+    progressEl.style.width = per;
+});
+
+
+
